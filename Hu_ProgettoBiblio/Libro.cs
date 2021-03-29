@@ -1,0 +1,171 @@
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+namespace Hu_ProgettoBiblio
+{
+    class Libro
+    {
+        public string TitoloAutore { get; set; }
+        public string casaEditrice { get; set; }
+        public string genere { get; set; }
+        public string id { get; set; }
+        public int nCopie { get; set; }
+        public bool disponibile { get; set; }
+
+        public Libro(string _ta, string _cs, string _gn, string _id, int _cp, bool _dsp)
+        {
+            TitoloAutore = _ta;
+            casaEditrice = _cs;
+            genere = _gn;
+            id = _id;
+            nCopie = _cp;
+            disponibile = _dsp;
+        }
+
+    }
+
+    class Blocco
+    {
+        public string email { get; set; }
+        public DateTime dBlocco { get; set; }
+
+        public Blocco(string _eml, DateTime _db)
+        {
+            email = _eml;
+            dBlocco = _db;
+        }
+    }
+
+    class Library
+    {
+        public string emailBiblio { get; set; }
+        public string passwordBiblio { get; set; }
+
+        public Library()
+        {
+            emailBiblio = "email";
+            passwordBiblio = "password";
+        }
+
+        public Library(string _eb, string _psw)
+        {
+            emailBiblio = _eb;
+            passwordBiblio = _psw;
+        }
+
+        public void BookLaod(string fileJson)
+        {
+            StreamReader sr = new StreamReader(fileJson);
+            string rte = sr.ReadToEnd();
+            Program.BookList = JsonConvert.DeserializeObject<List<Libro>>(rte);
+            sr.Close();
+        }
+
+        public void BookSave(string fileJson)
+        {
+            StreamWriter sw = new StreamWriter(fileJson);
+            string jsonConv = JsonConvert.SerializeObject(Program.BookList);
+            sw.WriteLine(jsonConv);
+            sw.Close();
+        }
+
+        public void BookControl()
+        {
+            foreach(Blocco block in Program.BlockList) 
+            {
+                if ((DateTime.Today - block.dBlocco).Days > 30)
+                {
+                    Program.BlockList.Remove(block);
+                    break;
+                }
+            }
+
+        }
+
+        public void UserLoad(string fileJson)
+        {
+            StreamReader sr = new StreamReader(fileJson);
+            string rte = sr.ReadToEnd();
+            Program.UserList = JsonConvert.DeserializeObject<List<Utente>>(rte);
+            sr.Close();
+        }
+        public void UserSave(string fileJson)
+        {
+            StreamWriter sw = new StreamWriter(fileJson);
+            string jsonConv = JsonConvert.SerializeObject(Program.UserList);
+            sw.WriteLine(jsonConv);
+            sw.Close();
+        }
+        public void LoansLoad(string fileJson)
+        {
+            StreamReader sr = new StreamReader(fileJson);
+            string rte = sr.ReadToEnd();
+            Program.LoansList = JsonConvert.DeserializeObject<List<Prestiti>>(rte);
+            sr.Close();
+        }
+        public void BlockLoad(string fileJson)
+        {
+            StreamReader sr = new StreamReader(fileJson);
+            string rte = sr.ReadToEnd();
+            Program.BlockList = JsonConvert.DeserializeObject<List<Blocco>>(rte);
+            sr.Close();
+        }
+
+        public void BlockSave(string fileJson)
+        {
+            StreamWriter sw = new StreamWriter(fileJson);
+            string jsonConv = JsonConvert.SerializeObject(Program.BlockList);
+            sw.WriteLine(jsonConv);
+            sw.Close();
+        }
+    }
+
+    class Prestiti
+    {
+        public string idUtente { get; set; }
+        public string idLibro { get; set; }
+        public DateTime gPrestito { get; set; }
+        public DateTime gReso { get; set; }
+
+        public Prestiti(string _iu, string _il, DateTime _gp, DateTime _gr)
+        {
+            idUtente = _iu;
+            idLibro = _il;
+            gPrestito = _gp;
+            gReso = _gr;
+        }
+    }
+
+    class Utente
+    {
+        public string nome { get; set; }
+        public string cognome { get; set; }
+        public int ritardi { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+
+        public Utente(string _nm, string _cn, int _rt, string _eml, string _psw)
+        {
+            nome = _nm;
+            cognome = _cn;
+            ritardi = _rt;
+            email = _eml;
+            password = _psw;
+        }
+
+        public void bloccoUtente()
+        {
+            if(ritardi == 3)
+            {
+
+            }
+
+        }
+    }
+
+}

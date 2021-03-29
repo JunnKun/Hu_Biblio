@@ -1,0 +1,14 @@
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\bin\Debug\Hu_ProgettoBiblio.exe.config
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\bin\Debug\Hu_ProgettoBiblio.exe
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\bin\Debug\Hu_ProgettoBiblio.pdb
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.csprojAssemblyReference.cache
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.Form1.resources
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.Properties.Resources.resources
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.csproj.GenerateResource.cache
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.csproj.CoreCompileInputs.cache
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.exe
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.pdb
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.bibliotecario.resources
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\bin\Debug\Newtonsoft.Json.dll
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\bin\Debug\Newtonsoft.Json.xml
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.csproj.CopyComplete

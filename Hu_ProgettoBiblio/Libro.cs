@@ -16,15 +16,25 @@ namespace Hu_ProgettoBiblio
         public string id { get; set; }
         public int nCopie { get; set; }
         public bool disponibile { get; set; }
+        public double prezzo { get; set; }
 
-        public Libro(string _ta, string _cs, string _gn, string _id, int _cp, bool _dsp)
+        public Libro(string _ta, string _cs, string _gn, string _id, int _cp, double _prz)
         {
             TitoloAutore = _ta;
+
             casaEditrice = _cs;
+
             genere = _gn;
+
             id = _id;
-            nCopie = _cp;
-            disponibile = _dsp;
+
+            if (nCopie > 0) nCopie = _cp;
+            else nCopie = 1;
+
+            if (nCopie > 0) disponibile = true;
+            else disponibile = false;
+
+            prezzo = _prz;
         }
 
     }
@@ -43,22 +53,31 @@ namespace Hu_ProgettoBiblio
 
     class Library
     {
-        public string emailBiblio { get; set; }
+        public string nameBiblio { get; set; }
         public string passwordBiblio { get; set; }
 
         public Library()
         {
-            emailBiblio = "email";
-            passwordBiblio = "password";
+            nameBiblio = "bibliotecario1234";
+            passwordBiblio = "ciaomondo";
         }
 
         public Library(string _eb, string _psw)
         {
-            emailBiblio = _eb;
-            passwordBiblio = _psw;
+            nameBiblio = _eb;
+            passwordBiblio = _psw;  
         }
 
-        public void BookLaod(string fileJson)
+        public bool login(Library library)
+        {
+            if (nameBiblio.Equals(library.nameBiblio) && passwordBiblio.Equals(library.passwordBiblio))
+                return true;
+            else
+                return false;
+
+        }
+
+        public void BookLoad(string fileJson)
         {
             StreamReader sr = new StreamReader(fileJson);
             string rte = sr.ReadToEnd();

@@ -12,3 +12,4 @@ C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_Progetto
 C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\bin\Debug\Newtonsoft.Json.dll
 C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\bin\Debug\Newtonsoft.Json.xml
 C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.csproj.CopyComplete
+C:\Users\jacky\Desktop\Hu_ProgettoBiblio\Hu_ProgettoBiblio\obj\Debug\Hu_ProgettoBiblio.User.resources

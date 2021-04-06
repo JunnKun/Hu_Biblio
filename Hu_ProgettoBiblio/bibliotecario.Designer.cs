@@ -56,7 +56,7 @@ namespace Hu_ProgettoBiblio
             this.Opzioni = new System.Windows.Forms.Button();
             this.GestionePrestiti = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.GestioneRitardi = new System.Windows.Forms.Button();
+            this.AumentoCopie = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -86,12 +86,28 @@ namespace Hu_ProgettoBiblio
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.numeriCopy = new System.Windows.Forms.NumericUpDown();
+            this.AggiornaCopie = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.prezzoButton = new System.Windows.Forms.Button();
             this.RimuoviButton = new System.Windows.Forms.Button();
             this.deleteBook = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.prezzoButton = new System.Windows.Forms.Button();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -102,6 +118,10 @@ namespace Hu_ProgettoBiblio
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numeriCopy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -295,6 +315,7 @@ namespace Hu_ProgettoBiblio
             this.columnHeader4,
             this.columnHeader7,
             this.columnHeader8});
+            this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(317, 125);
@@ -303,7 +324,7 @@ namespace Hu_ProgettoBiblio
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.Visible = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader5
             // 
@@ -316,12 +337,12 @@ namespace Hu_ProgettoBiblio
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "ISBN";
+            this.columnHeader3.Text = "Genere";
             this.columnHeader3.Width = 75;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Genere";
+            this.columnHeader4.Text = "ISBN";
             // 
             // columnHeader7
             // 
@@ -368,7 +389,7 @@ namespace Hu_ProgettoBiblio
             this.flowLayoutPanel1.Controls.Add(this.Opzioni);
             this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Controls.Add(this.GestionePrestiti);
-            this.flowLayoutPanel1.Controls.Add(this.GestioneRitardi);
+            this.flowLayoutPanel1.Controls.Add(this.AumentoCopie);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(748, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -376,19 +397,20 @@ namespace Hu_ProgettoBiblio
             this.flowLayoutPanel1.TabIndex = 6;
             this.flowLayoutPanel1.Visible = false;
             // 
-            // GestioneRitardi
+            // AumentoCopie
             // 
-            this.GestioneRitardi.BackColor = System.Drawing.Color.DarkOrange;
-            this.GestioneRitardi.FlatAppearance.BorderSize = 0;
-            this.GestioneRitardi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GestioneRitardi.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GestioneRitardi.ForeColor = System.Drawing.Color.White;
-            this.GestioneRitardi.Location = new System.Drawing.Point(3, 198);
-            this.GestioneRitardi.Name = "GestioneRitardi";
-            this.GestioneRitardi.Size = new System.Drawing.Size(202, 59);
-            this.GestioneRitardi.TabIndex = 9;
-            this.GestioneRitardi.Text = "Gestione Ritardi";
-            this.GestioneRitardi.UseVisualStyleBackColor = false;
+            this.AumentoCopie.BackColor = System.Drawing.Color.DarkOrange;
+            this.AumentoCopie.FlatAppearance.BorderSize = 0;
+            this.AumentoCopie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AumentoCopie.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AumentoCopie.ForeColor = System.Drawing.Color.White;
+            this.AumentoCopie.Location = new System.Drawing.Point(3, 198);
+            this.AumentoCopie.Name = "AumentoCopie";
+            this.AumentoCopie.Size = new System.Drawing.Size(202, 59);
+            this.AumentoCopie.TabIndex = 9;
+            this.AumentoCopie.Text = "Aumento Copie";
+            this.AumentoCopie.UseVisualStyleBackColor = false;
+            this.AumentoCopie.Click += new System.EventHandler(this.AumentoCopie_Click);
             // 
             // panel3
             // 
@@ -672,7 +694,7 @@ namespace Hu_ProgettoBiblio
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.label13);
             this.panel5.Controls.Add(this.label15);
-            this.panel5.Location = new System.Drawing.Point(33, 20);
+            this.panel5.Location = new System.Drawing.Point(33, 24);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(230, 415);
             this.panel5.TabIndex = 9;
@@ -700,16 +722,152 @@ namespace Hu_ProgettoBiblio
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.label21);
+            this.panel6.Controls.Add(this.numericUpDown1);
             this.panel6.Controls.Add(this.prezzoButton);
             this.panel6.Controls.Add(this.RimuoviButton);
             this.panel6.Controls.Add(this.deleteBook);
             this.panel6.Controls.Add(this.label20);
             this.panel6.Controls.Add(this.label19);
             this.panel6.Controls.Add(this.pictureBox3);
-            this.panel6.Location = new System.Drawing.Point(29, 58);
+            this.panel6.Location = new System.Drawing.Point(29, 59);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(234, 377);
             this.panel6.TabIndex = 10;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label22);
+            this.panel7.Controls.Add(this.numeriCopy);
+            this.panel7.Controls.Add(this.AggiornaCopie);
+            this.panel7.Controls.Add(this.button4);
+            this.panel7.Controls.Add(this.textBox1);
+            this.panel7.Controls.Add(this.label23);
+            this.panel7.Controls.Add(this.label24);
+            this.panel7.Controls.Add(this.pictureBox4);
+            this.panel7.Location = new System.Drawing.Point(19, 48);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(234, 377);
+            this.panel7.TabIndex = 18;
+            // 
+            // label22
+            // 
+            this.label22.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Maroon;
+            this.label22.Location = new System.Drawing.Point(10, 168);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(43, 19);
+            this.label22.TabIndex = 17;
+            this.label22.Text = "Copie";
+            // 
+            // numeriCopy
+            // 
+            this.numeriCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.numeriCopy.Location = new System.Drawing.Point(14, 190);
+            this.numeriCopy.Name = "numeriCopy";
+            this.numeriCopy.Size = new System.Drawing.Size(119, 24);
+            this.numeriCopy.TabIndex = 12;
+            // 
+            // AggiornaCopie
+            // 
+            this.AggiornaCopie.BackColor = System.Drawing.SystemColors.Highlight;
+            this.AggiornaCopie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AggiornaCopie.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.AggiornaCopie.Location = new System.Drawing.Point(95, 304);
+            this.AggiornaCopie.Name = "AggiornaCopie";
+            this.AggiornaCopie.Size = new System.Drawing.Size(96, 34);
+            this.AggiornaCopie.TabIndex = 16;
+            this.AggiornaCopie.Text = "Aggiorna Copie";
+            this.AggiornaCopie.UseVisualStyleBackColor = false;
+            this.AggiornaCopie.Click += new System.EventHandler(this.AggiornaCopie_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button4.Location = new System.Drawing.Point(95, 304);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(96, 34);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "Rimuovi";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(14, 115);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(177, 24);
+            this.textBox1.TabIndex = 14;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.Maroon;
+            this.label23.Location = new System.Drawing.Point(10, 94);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(39, 19);
+            this.label23.TabIndex = 13;
+            this.label23.Text = "ISBN";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Transparent;
+            this.label24.Font = new System.Drawing.Font("Nirmala UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(68, 19);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(137, 30);
+            this.label24.TabIndex = 12;
+            this.label24.Text = "Bibliotecario";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Hu_ProgettoBiblio.Properties.Resources._23358;
+            this.pictureBox4.Location = new System.Drawing.Point(4, 14);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(55, 42);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 11;
+            this.pictureBox4.TabStop = false;
+            // 
+            // label21
+            // 
+            this.label21.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.Maroon;
+            this.label21.Location = new System.Drawing.Point(10, 168);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(51, 19);
+            this.label21.TabIndex = 17;
+            this.label21.Text = "Prezzo";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DecimalPlaces = 2;
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.numericUpDown1.Location = new System.Drawing.Point(14, 190);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(119, 24);
+            this.numericUpDown1.TabIndex = 12;
+            // 
+            // prezzoButton
+            // 
+            this.prezzoButton.BackColor = System.Drawing.SystemColors.Highlight;
+            this.prezzoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.prezzoButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.prezzoButton.Location = new System.Drawing.Point(95, 304);
+            this.prezzoButton.Name = "prezzoButton";
+            this.prezzoButton.Size = new System.Drawing.Size(96, 34);
+            this.prezzoButton.TabIndex = 16;
+            this.prezzoButton.Text = "Aggiorna Prezzo";
+            this.prezzoButton.UseVisualStyleBackColor = false;
+            this.prezzoButton.Click += new System.EventHandler(this.prezzoButton_Click);
             // 
             // RimuoviButton
             // 
@@ -764,17 +922,43 @@ namespace Hu_ProgettoBiblio
             this.pictureBox3.TabIndex = 11;
             this.pictureBox3.TabStop = false;
             // 
-            // prezzoButton
+            // listView2
             // 
-            this.prezzoButton.BackColor = System.Drawing.SystemColors.Highlight;
-            this.prezzoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.prezzoButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.prezzoButton.Location = new System.Drawing.Point(95, 304);
-            this.prezzoButton.Name = "prezzoButton";
-            this.prezzoButton.Size = new System.Drawing.Size(96, 34);
-            this.prezzoButton.TabIndex = 16;
-            this.prezzoButton.Text = "Aggiorna Prezzo";
-            this.prezzoButton.UseVisualStyleBackColor = false;
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader15,
+            this.columnHeader16,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(316, 124);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(413, 273);
+            this.listView2.TabIndex = 11;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            this.listView2.Visible = false;
+            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "ID utente";
+            this.columnHeader15.Width = 76;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "ISBN";
+            this.columnHeader16.Width = 80;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Prestito";
+            this.columnHeader9.Width = 127;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Reso";
+            this.columnHeader10.Width = 128;
             // 
             // bibliotecario
             // 
@@ -784,6 +968,8 @@ namespace Hu_ProgettoBiblio
             this.BackgroundImage = global::Hu_ProgettoBiblio.Properties.Resources.IMG_BIB;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(950, 469);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.listView2);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
@@ -794,6 +980,7 @@ namespace Hu_ProgettoBiblio
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "bibliotecario";
             this.Text = "bibliotecario";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.bibliotecario_FormClosing);
             this.Load += new System.EventHandler(this.bibliotecario_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -810,6 +997,11 @@ namespace Hu_ProgettoBiblio
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numeriCopy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
@@ -842,7 +1034,7 @@ namespace Hu_ProgettoBiblio
         private System.Windows.Forms.Button Opzioni;
         private System.Windows.Forms.Button GestionePrestiti;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button GestioneRitardi;
+        private System.Windows.Forms.Button AumentoCopie;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button2;
@@ -878,5 +1070,21 @@ namespace Hu_ProgettoBiblio
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button prezzoButton;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.NumericUpDown numeriCopy;
+        private System.Windows.Forms.Button AggiornaCopie;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }

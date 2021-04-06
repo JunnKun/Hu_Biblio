@@ -18,6 +18,16 @@ namespace Hu_ProgettoBiblio
         public bool disponibile { get; set; }
         public double prezzo { get; set; }
 
+        public Libro()
+        {
+            TitoloAutore = "";
+            casaEditrice = "";
+            genere = "";
+            id = "";
+            nCopie = 1;
+            disponibile = true;
+            prezzo = 0;
+        }
         public Libro(string _ta, string _cs, string _gn, string _id, int _cp, double _prz)
         {
             TitoloAutore = _ta;
@@ -105,6 +115,13 @@ namespace Hu_ProgettoBiblio
             }
 
         }
+        public void aggiornaDisponibilità(Libro libro)
+        {
+            if (libro.nCopie <= 0)
+            {
+                libro.disponibile = false;
+            }
+        }
 
         public void UserLoad(string fileJson)
         {
@@ -167,14 +184,43 @@ namespace Hu_ProgettoBiblio
         public int ritardi { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+        public string id { get; set; }
 
-        public Utente(string _nm, string _cn, int _rt, string _eml, string _psw)
+        public Utente()
+        {
+            nome = "";
+            cognome = "";
+            ritardi = 0;
+            email = "";
+            password = "";
+            id = "";
+        }
+        public Utente(string _nm, string _cn, int _rt, string _eml, string _psw, string _id)
         {
             nome = _nm;
             cognome = _cn;
             ritardi = _rt;
             email = _eml;
             password = _psw;
+            id = _id;
+        }
+        public Utente(string _nm, string _cn, string _eml, string _psw)
+        {
+            nome = _nm;
+            cognome = _cn;
+            ritardi = 0;
+            email = _eml;
+            password = _psw;
+            id = generatoreID();
+        }
+
+        private string generatoreID()
+        {
+            Guid g = Guid.NewGuid();
+            string GuidString = Convert.ToBase64String(g.ToByteArray());
+            GuidString = GuidString.Replace("=", "");
+            GuidString = GuidString.Replace("+", "");
+            return GuidString;
         }
 
         public void bloccoUtente()

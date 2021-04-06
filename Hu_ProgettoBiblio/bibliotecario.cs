@@ -16,6 +16,7 @@ namespace Hu_ProgettoBiblio
     {
         Library library = new Library();
         private bool isCollapsed;
+        private int choose = 0;
         public bibliotecario()
         {
             InitializeComponent();
@@ -23,12 +24,19 @@ namespace Hu_ProgettoBiblio
 
         private void bibliotecario_Load(object sender, EventArgs e)
         {
+            listView2.Hide();
             panel2.Show();
             panel4.Hide();
             panel5.Hide();
             panel6.Hide();
+            panel7.Hide();
             library.BookLoad("../../Gestione/archivio.json");
+            library.LoansLoad("../../Gestione/prestiti.json");
+        }
 
+        private void bibliotecario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            library.BookSave("../../Gestione/archivio.json");
         }
 
         private void GestioneLibri_MouseHover(object sender, EventArgs e)
@@ -71,10 +79,12 @@ namespace Hu_ProgettoBiblio
             {
                 flowLayoutPanel1.Visible = true;
                 listView1.Visible = true;
+                listView2.Hide();
                 panel2.Hide();
                 panel4.Hide();
                 panel6.Hide();
                 panel5.Show();
+                panel7.Hide();
                 library.BookLoad("../../Gestione/archivio.json");
                 BookLoader();
             }
@@ -85,10 +95,14 @@ namespace Hu_ProgettoBiblio
         }
         private void RimuoviLibro_Click(object sender, EventArgs e)
         {
+            choose = 1;
+            numericUpDown1.Hide();
+            listView2.Hide();
             panel2.Hide();
             panel4.Hide();
             panel5.Hide();
             panel6.Show();
+            panel7.Hide();
             prezzoButton.Hide();
             RimuoviButton.Show();
             listView1.Show();
@@ -96,18 +110,25 @@ namespace Hu_ProgettoBiblio
         }
         private void AggiungiLibro_Click(object sender, EventArgs e)
         {
+            choose = 2;
+            listView2.Hide();
             panel2.Hide();
             panel6.Hide();
             panel5.Hide();
+            panel7.Hide();
             panel4.Show();
             listView1.Show();
             BookLoader();
         }
         private void AggiornaPrezzo_Click(object sender, EventArgs e)
         {
+            choose = 3;
+            numericUpDown1.Show();
+            listView2.Hide();
             panel2.Hide();
             panel4.Hide();
             panel5.Hide();
+            panel7.Hide();
             RimuoviButton.Hide();
             panel6.Show();
             prezzoButton.Show();
@@ -117,7 +138,15 @@ namespace Hu_ProgettoBiblio
 
         private void GestionePrestiti_Click(object sender, EventArgs e)
         {
-            
+            listView2.Show();
+            panel2.Hide();
+            panel4.Hide();
+            panel5.Hide();
+            panel7.Hide();
+            RimuoviButton.Hide();
+            panel6.Hide();
+            prezzoButton.Hide();
+            listView1.Hide();
         }
 
         private void BookLoader()
@@ -127,8 +156,6 @@ namespace Hu_ProgettoBiblio
             {
                 string[] all = { libro.TitoloAutore, libro.casaEditrice, libro.genere, libro.id, libro.nCopie.ToString(), libro.prezzo.ToString() };
                 listView1.Items.Add(new ListViewItem(all));
-                //listView2.Items.Add(new ListViewItem(all));
-                //listView3.Items.Add(new ListViewItem(all));
             }
         }
 
@@ -136,10 +163,10 @@ namespace Hu_ProgettoBiblio
         {
             if (check())
             {
-                Libro book = new Libro(titleText.Text, csText.Text, isbnText.Text, genreText.Text, Convert.ToInt32(cText.Text), Convert.ToDouble(prezzoValue.Value));
+                Libro book = new Libro(titleText.Text, csText.Text, genreText.Text, isbnText.Text, Convert.ToInt32(cText.Text), Convert.ToDouble(prezzoValue.Value));
                 Program.BookList.Add(book);
                 BookLoader();
-                library.BookSave("../../Gestione/archivio.json");
+                // library.BookSave("../../Gestione/archivio.json");
                 clear();
                 MessageBox.Show("Libro Inserito");
             }
@@ -185,6 +212,93 @@ namespace Hu_ProgettoBiblio
 
             }
             MessageBox.Show("Libro non esistente");
+        }
+
+        private void AumentoCopie_Click(object sender, EventArgs e)
+        {
+            choose = 4;
+            panel7.Show();
+            listView2.Hide();
+            panel2.Hide();
+            panel4.Hide();
+            panel5.Hide();
+            RimuoviButton.Hide();
+            panel6.Hide();
+            listView1.Show();
+            BookLoader();
+        }
+
+        private void AggiornaCopie_Click(object sender, EventArgs e)
+        {
+            copyupdate();
+            BookLoader();
+            clear();
+        }
+
+        private void copyupdate()
+        {
+            foreach (Libro libro in Program.BookList)
+            {
+                if (textBox1.Text.Equals(libro.id))
+                {
+                    libro.nCopie = Convert.ToInt32(numeriCopy.Value);
+                    MessageBox.Show("Aggiornamento delle copie avvenuto con successo");
+                    return;
+                }
+            }
+            MessageBox.Show("Libro non esistente");
+        }
+        private void prezzoButton_Click(object sender, EventArgs e)
+        {
+            priceUpdate();
+            BookLoader();
+            clear();
+        }
+
+        private void priceUpdate()
+        {
+            foreach(Libro libro in Program.BookList)
+            {
+                if (deleteBook.Text.Equals(libro.id))
+                {
+                    libro.prezzo = Convert.ToDouble(numericUpDown1.Value);
+                    MessageBox.Show("Aggiornamento del prezzo avvenuto con successo");
+                    return;
+                }
+            }
+            MessageBox.Show("Libro non esistente");
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (choose)
+            {
+                case 1:
+                    if (listView1.SelectedItems.Count > 0)
+                        deleteBook.Text = listView1.SelectedItems[0].SubItems[3].Text;
+                    break;
+                case 2:
+                    // deleteBook.Text = listView1.SelectedItems[0].SubItems[3].Text;
+                    break;
+                case 3:
+                    if (listView1.SelectedItems.Count > 0) {
+                        numericUpDown1.Value = Convert.ToDecimal(listView1.SelectedItems[0].SubItems[5].Text);
+                        deleteBook.Text = listView1.SelectedItems[0].SubItems[3].Text;
+                    }
+                    break;
+                case 4:
+                    if (listView1.SelectedItems.Count > 0)
+                    {
+                        numeriCopy.Value = Convert.ToInt32(listView1.SelectedItems[0].SubItems[4].Text);
+                        textBox1.Text = listView1.SelectedItems[0].SubItems[3].Text;
+                    }
+                    break;
+            }
         }
     }
 }

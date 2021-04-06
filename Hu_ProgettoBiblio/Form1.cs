@@ -12,6 +12,7 @@ namespace Hu_ProgettoBiblio
 {
     public partial class Form1 : Form
     {
+        Library library = new Library();
         public Form1()
         {
             InitializeComponent();
@@ -19,7 +20,6 @@ namespace Hu_ProgettoBiblio
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void LibraryButton_Click(object sender, EventArgs e)
@@ -42,7 +42,8 @@ namespace Hu_ProgettoBiblio
 
         private void UserButton_Click(object sender, EventArgs e)
         {
-            
+            User utente = new User();
+            utente.ShowDialog();
         }
 
         private void UserButton_MouseHover(object sender, EventArgs e)

@@ -22,6 +22,8 @@ namespace Hu_ProgettoBiblio
 
         private void User_Load(object sender, EventArgs e)
         {
+            panel6.Hide();
+            listView2.Hide();
             panel1.Hide();
             panel4.Hide();
             panelPrenota.Hide();
@@ -29,6 +31,7 @@ namespace Hu_ProgettoBiblio
             library.UserLoad("../../Gestione/user.json");
             library.BookLoad("../../Gestione/archivio.json");
             library.LoansLoad("../../Gestione/prestiti.json");
+            library.BlockLoad("../../Gestione/blocco.json");
             update();
         }
 
@@ -44,6 +47,8 @@ namespace Hu_ProgettoBiblio
 
         private void Info_Click(object sender, EventArgs e)
         {
+            panel6.Hide();
+            listView2.Hide();
             panelPrenota.Hide();
             panel1.Show();
             listView1.Hide();
@@ -103,6 +108,7 @@ namespace Hu_ProgettoBiblio
                     utent.cognome = utente.cognome;
                     utent.email = utente.email;
                     utent.ritardi = utente.ritardi;
+                    utent.id = utente.id;
 
                     return true;
                 }
@@ -129,6 +135,27 @@ namespace Hu_ProgettoBiblio
             {
                 string[] all = { libro.TitoloAutore, libro.casaEditrice, libro.genere, libro.id, libro.prezzo.ToString(), libro.disponibile.ToString() };
                 listView1.Items.Add(new ListViewItem(all));
+            }
+        }
+
+        private void LoanLoader()
+        {
+            listView2.Items.Clear();
+            foreach (Prestiti prestiti in Program.LoansList)
+            {
+                if (utent.id.Equals(prestiti.idUtente))
+                {
+                    if (prestiti.gReso == Convert.ToDateTime("01/01/2000")) 
+                    { 
+                        string[] all = { prestiti.idLibro, prestiti.gPrestito.ToString(), "" };
+                        listView2.Items.Add(new ListViewItem(all));
+                    }
+                    else 
+                    {
+                        string[] all = { prestiti.idLibro, prestiti.gPrestito.ToString(), prestiti.gReso.ToString() };
+                        listView2.Items.Add(new ListViewItem(all));
+                    }
+                }
             }
         }
 
@@ -166,15 +193,23 @@ namespace Hu_ProgettoBiblio
 
         private void Prenotazione_Click_1(object sender, EventArgs e)
         {
+            panel6.Hide();
+            listView2.Hide();
             panelPrenota.Show();
             panel1.Hide();
             listView1.Show();
             timer1.Start();
+            BookLoader();
         }
 
         private void Prenotati_Click(object sender, EventArgs e)
         {
-
+            panel6.Show();
+            listView2.Show();
+            panelPrenota.Hide();
+            panel1.Hide();
+            listView1.Hide();
+            LoanLoader();
         }
 
         private void prenota()
@@ -188,8 +223,8 @@ namespace Hu_ProgettoBiblio
                         libro.nCopie--;
                         MessageBox.Show("prestito effettuato");
                         library.aggiornaDisponibilità(libro);
+                        prenota2();
                         library.BookSave("../../Gestione/archivio.json");
-                        BookLoader();
                         return;
                     }
                 }
@@ -201,16 +236,10 @@ namespace Hu_ProgettoBiblio
             {
                 if (TitoloText.Text.Equals(libro.TitoloAutore) && csText.Text.Equals(libro.casaEditrice) && isbnText.Text.Equals(libro.id))
                 {
-                    if (libro.disponibile == true)
-                    {
-                        Prestiti prestito = new Prestiti(utent.id, libro.id, DateTime.Now, Convert.ToDateTime("dd / MM / yyyy"));
-                        Program.LoansList.Add(prestito);
-                        MessageBox.Show("Prestito effettuato con successo");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Prestito fallito");
-                    }
+                    Prestiti prestito = new Prestiti(utent.id, libro.id, DateTime.Now, Convert.ToDateTime("01/01/2000"));
+                    Program.LoansList.Add(prestito);
+                    library.LoansSave("../../Gestione/prestiti.json");
+                    return;
                 }
             }
         }
@@ -242,6 +271,81 @@ namespace Hu_ProgettoBiblio
         private void button2_Click(object sender, EventArgs e)
         {
             prenota();
+            BookLoader();
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView2.SelectedItems.Count > 0)
+                textBox5.Text = listView2.SelectedItems[0].SubItems[0].Text;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (listView2.SelectedItems.Count > 0)
+            {
+                if (listView2.SelectedItems[0].SubItems[2].Text.Equals(""))
+                {
+                    foreach (Prestiti prestiti in Program.LoansList)
+                    {
+                        if (prestiti.idUtente.Equals(utent.id) && prestiti.idLibro.Equals(listView2.SelectedItems[0].SubItems[0].Text) && prestiti.gPrestito.ToString().Equals(listView2.SelectedItems[0].SubItems[1].Text) && prestiti.gReso == Convert.ToDateTime("01/01/2000"))
+                        {
+                            Libro libro = bookSearcher(prestiti.idLibro);
+                            if(libro != null)
+                            {
+                                libro.nCopie++;
+                                prestiti.gReso = DateTime.Now;
+                                MessageBox.Show("Restituzione Libro avvenuto con successo");
+                                library.DelaysControl();
+                                library.LoansSave("../../Gestione/prestiti.json");
+                                update();
+                                BookLoader();
+                                LoanLoader();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Errore nella restituzione del libro");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Libro già restituito in precedenza");
+                }
+            }
+        }
+
+        private Libro bookSearcher(string id)
+        {
+            foreach(Libro libro in Program.BookList)
+            {
+                if (id.Equals(libro.id))
+                {
+                    return libro;
+                }
+            }
+            return null;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (listView2.SelectedItems.Count > 0)
+            {
+                if (listView2.SelectedItems[0].SubItems[2].Text.Equals(""))
+                {
+                    foreach (Prestiti prestiti in Program.LoansList)
+                    {
+                        if(prestiti.idUtente.Equals(utent.id) && prestiti.idLibro.Equals(listView2.SelectedItems[0].SubItems[0].Text) && prestiti.gPrestito.ToString().Equals(listView2.SelectedItems[0].SubItems[1].Text))
+                        {
+                            prestiti.gPrestito = DateTime.Now;
+                            MessageBox.Show("Tempo prolungato ad oggi");
+                            library.LoansSave("../../Gestione/prestiti.json");
+                            LoanLoader();
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -36,7 +36,6 @@ namespace Hu_ProgettoBiblio
             this.panel5 = new System.Windows.Forms.Panel();
             this.Prenotazione = new System.Windows.Forms.Button();
             this.Prenotati = new System.Windows.Forms.Button();
-            this.Rinnovo = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.registrazione = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -88,6 +87,18 @@ namespace Hu_ProgettoBiblio
             this.TitoloLabel = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.mexBiblio = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -98,6 +109,8 @@ namespace Hu_ProgettoBiblio
             this.panel1.SuspendLayout();
             this.panelPrenota.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -106,7 +119,7 @@ namespace Hu_ProgettoBiblio
             this.flowLayoutPanel1.Controls.Add(this.Opzioni);
             this.flowLayoutPanel1.Controls.Add(this.Info);
             this.flowLayoutPanel1.Controls.Add(this.panel5);
-            this.flowLayoutPanel1.Controls.Add(this.Rinnovo);
+            this.flowLayoutPanel1.Controls.Add(this.mexBiblio);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(748, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -186,21 +199,6 @@ namespace Hu_ProgettoBiblio
             this.Prenotati.Text = "Libri Prenotati";
             this.Prenotati.UseVisualStyleBackColor = false;
             this.Prenotati.Click += new System.EventHandler(this.Prenotati_Click);
-            // 
-            // Rinnovo
-            // 
-            this.Rinnovo.BackColor = System.Drawing.Color.DarkOrange;
-            this.Rinnovo.FlatAppearance.BorderSize = 0;
-            this.Rinnovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Rinnovo.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rinnovo.ForeColor = System.Drawing.Color.White;
-            this.Rinnovo.Location = new System.Drawing.Point(3, 198);
-            this.Rinnovo.Name = "Rinnovo";
-            this.Rinnovo.Size = new System.Drawing.Size(202, 59);
-            this.Rinnovo.TabIndex = 10;
-            this.Rinnovo.Text = "Rinnovo";
-            this.Rinnovo.UseVisualStyleBackColor = false;
-            this.Rinnovo.Click += new System.EventHandler(this.Rinnovo_Click);
             // 
             // panel2
             // 
@@ -319,7 +317,7 @@ namespace Hu_ProgettoBiblio
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(269, 98);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(413, 273);
+            this.listView1.Size = new System.Drawing.Size(442, 273);
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -490,7 +488,7 @@ namespace Hu_ProgettoBiblio
             this.panel3.Controls.Add(this.label9);
             this.panel3.Location = new System.Drawing.Point(269, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(412, 61);
+            this.panel3.Size = new System.Drawing.Size(442, 61);
             this.panel3.TabIndex = 14;
             // 
             // label10
@@ -527,7 +525,7 @@ namespace Hu_ProgettoBiblio
             this.panel1.Controls.Add(this.label8);
             this.panel1.Location = new System.Drawing.Point(269, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(413, 359);
+            this.panel1.Size = new System.Drawing.Size(442, 359);
             this.panel1.TabIndex = 15;
             // 
             // textBox4
@@ -725,6 +723,135 @@ namespace Hu_ProgettoBiblio
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader14,
+            this.columnHeader1,
+            this.columnHeader2});
+            this.listView2.FullRowSelect = true;
+            this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(269, 89);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(442, 273);
+            this.listView2.TabIndex = 13;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "ISBN";
+            this.columnHeader14.Width = 117;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Giorno Prestito";
+            this.columnHeader1.Width = 169;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Giorno Ritiro";
+            this.columnHeader2.Width = 149;
+            // 
+            // panel6
+            // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.button4);
+            this.panel6.Controls.Add(this.textBox5);
+            this.panel6.Controls.Add(this.label14);
+            this.panel6.Controls.Add(this.button3);
+            this.panel6.Controls.Add(this.label17);
+            this.panel6.Controls.Add(this.pictureBox4);
+            this.panel6.Location = new System.Drawing.Point(8, 12);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(230, 415);
+            this.panel6.TabIndex = 17;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button4.Location = new System.Drawing.Point(98, 264);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(96, 34);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "Rinnova";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(20, 114);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(177, 24);
+            this.textBox5.TabIndex = 10;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Maroon;
+            this.label14.Location = new System.Drawing.Point(16, 92);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(39, 19);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "ISBN";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button3.Location = new System.Drawing.Point(98, 219);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(96, 34);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Restituisci";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(72, 12);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(140, 25);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Libri Prenotati";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.BackgroundImage = global::Hu_ProgettoBiblio.Properties.Resources._23358;
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox4.InitialImage = null;
+            this.pictureBox4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(63, 48);
+            this.pictureBox4.TabIndex = 3;
+            this.pictureBox4.TabStop = false;
+            // 
+            // mexBiblio
+            // 
+            this.mexBiblio.BackColor = System.Drawing.Color.DarkOrange;
+            this.mexBiblio.FlatAppearance.BorderSize = 0;
+            this.mexBiblio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mexBiblio.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mexBiblio.ForeColor = System.Drawing.Color.White;
+            this.mexBiblio.Location = new System.Drawing.Point(3, 198);
+            this.mexBiblio.Name = "mexBiblio";
+            this.mexBiblio.Size = new System.Drawing.Size(202, 59);
+            this.mexBiblio.TabIndex = 10;
+            this.mexBiblio.Text = "Messaggi dalla biblioteca";
+            this.mexBiblio.UseVisualStyleBackColor = false;
+            this.mexBiblio.Click += new System.EventHandler(this.Rinnovo_Click);
+            // 
             // User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -732,6 +859,8 @@ namespace Hu_ProgettoBiblio
             this.BackgroundImage = global::Hu_ProgettoBiblio.Properties.Resources.thumb_1920_389877;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(950, 469);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.listView2);
             this.Controls.Add(this.panelPrenota);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
@@ -757,6 +886,9 @@ namespace Hu_ProgettoBiblio
             this.panelPrenota.ResumeLayout(false);
             this.panelPrenota.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -766,7 +898,6 @@ namespace Hu_ProgettoBiblio
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button Opzioni;
         private System.Windows.Forms.Button Info;
-        private System.Windows.Forms.Button Rinnovo;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox passwordText;
@@ -821,5 +952,17 @@ namespace Hu_ProgettoBiblio
         private System.Windows.Forms.Label TitoloLabel;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button mexBiblio;
     }
 }

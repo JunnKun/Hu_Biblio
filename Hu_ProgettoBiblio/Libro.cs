@@ -51,13 +51,19 @@ namespace Hu_ProgettoBiblio
 
     class Blocco
     {
-        public string email { get; set; }
+        public string id { get; set; }
         public DateTime dBlocco { get; set; }
 
-        public Blocco(string _eml, DateTime _db)
+        public Blocco(string _id, DateTime _db)
         {
-            email = _eml;
+            id = _id;
             dBlocco = _db;
+        }
+
+        public Blocco()
+        {
+            id = "";
+            dBlocco = Convert.ToDateTime("01/01/2000");
         }
     }
 
@@ -144,6 +150,14 @@ namespace Hu_ProgettoBiblio
             Program.LoansList = JsonConvert.DeserializeObject<List<Prestiti>>(rte);
             sr.Close();
         }
+
+        public void LoansSave(string fileJson)
+        {
+            StreamWriter sw = new StreamWriter(fileJson);
+            string jsonConv = JsonConvert.SerializeObject(Program.LoansList);
+            sw.WriteLine(jsonConv);
+            sw.Close();
+        }
         public void BlockLoad(string fileJson)
         {
             StreamReader sr = new StreamReader(fileJson);
@@ -158,6 +172,69 @@ namespace Hu_ProgettoBiblio
             string jsonConv = JsonConvert.SerializeObject(Program.BlockList);
             sw.WriteLine(jsonConv);
             sw.Close();
+        }
+
+        public void Block()
+        {
+            foreach(Blocco blocco in Program.BlockList)
+            {
+                if((DateTime.Now-blocco.dBlocco).Days > 30)
+                {
+                    Program.BlockList.Remove(blocco);
+                    foreach(Utente utente in Program.UserList)
+                    {
+                        if (blocco.id.Equals(utente.id))
+                        {
+                            ResetControl(utente);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            foreach(Utente utente in Program.UserList)
+            {
+                if(utente.ritardi == 3)
+                {
+                    bool boolBlocco = false;
+                    foreach(Blocco blocco in Program.BlockList)
+                    {
+                        if (blocco.id.Equals(utente.id))
+                        {
+                            boolBlocco = true;
+                        }
+                    }
+                    if (boolBlocco) // Nel caso non fosse stato ancora bloccato
+                    {
+                        Blocco blocco = new Blocco(utente.id, DateTime.Now);
+                        Program.BlockList.Add(blocco);
+                    }
+                }
+            }
+        }
+
+        public void ResetControl(Utente utente)
+        {
+            utente.ritardi = 0;
+        }
+        public void DelaysControl()
+        {
+            foreach (Prestiti prestiti in Program.LoansList)
+            {
+                if (prestiti.gReso == Convert.ToDateTime("01/01/2000"))
+                {
+                    if ((DateTime.Now - prestiti.gPrestito).Days > 30)
+                    {
+                        foreach (Utente utente in Program.UserList)
+                        {
+                            if (utente.id.Equals(prestiti.idUtente))
+                            {
+                                utente.ritardi++;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -221,15 +298,6 @@ namespace Hu_ProgettoBiblio
             GuidString = GuidString.Replace("=", "");
             GuidString = GuidString.Replace("+", "");
             return GuidString;
-        }
-
-        public void bloccoUtente()
-        {
-            if(ritardi == 3)
-            {
-
-            }
-
         }
     }
 
